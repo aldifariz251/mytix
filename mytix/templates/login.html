@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Tix | Sign In</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <style>
+        .containerr {
+            width: 50%;
+            margin: 30px auto;
+            padding: 50px;
+            box-shadow: 3px 10px 15px #888888;
+            border-radius: 8%;
+        }
+        label {
+            cursor: pointer;
+        }
+        label, input {
+            margin-bottom: 10px;
+            /* display: flex; */
+        }
+
+        input[type='submit']{
+            display: block;
+        }
+
+        .forgotpassword{
+            display: flex;
+            float: right;
+        }
+        input[type= 'checkbox']{
+            cursor: pointer;
+            display: inline-block;
+        }
+        .p1 {
+            display: inline-block;
+        }
+</style>
+</head>
+<body>
+
+    <div class="containerr">
+        <h1>Sign In</h1>
+
+        <form action="#" method="POST">
+            {% csrf_token %}
+            <label for="username">Username: </label>
+            <input type="text" name="username" id="username" class="form-control" autocomplete="off" required autofocus>
+
+            <label for="password">Password: </label>
+            <input type="password" name="password" id="password" class="form-control" autocomplete="off" required>
+            
+            <input type="checkbox" name="seepw" id="seepw" onclick="reveal()">
+            <label for="seepw" class="p1">See Password</label>
+
+            <a class="link-danger forgotpassword" data-bs-toggle="modal" href="#exampleModalToggle">Forgot Password?</a>
+            
+            <input type="submit" value="Submit" class="btn btn-primary">
+            
+            <div class="redirectsignup">
+                <p>Don't have any account?</p>
+                <a href="/register" class="btn btn-outline-primary">Sign Up</a>    
+            </div>
+            
+        </form>    
+    </div>
+
+    <!-- Modal Reset password - input email -->
+    <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalToggleLabel">Reset Password</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="resetpassword">
+
+                    <input type="text" name="emailreset" id="emailreset" class="form-control" placeholder="Input your email here!">
+                    <input type="password" name="newpassword" id="newpassword" class="form-control" placeholder="New Password">
+                    <input type="password" name="newpassword2" id="newpassword2" class="form-control" placeholder="Password Confirmation">
+
+                    
+                </form>
+            </div>
+            <div class="modal-footer">
+              <input type="submit" value="Submit" class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Password yang ditampilkan sesudah input nama dan email -->
+      <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalToggleLabel2">Succeed!</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <p>Password sudah diperbarui!</p>
+            </div>
+            <div class="modal-footer">
+              <!-- <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" data-bs-dismiss="modal">Back to first</button> -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <a class="btn btn-primary" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Open first modal</a> -->
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+<script>
+// function melihat password di input password
+function reveal(){
+    if(document.getElementById('seepw').checked){
+        document.getElementById("password").type='text';
+    } else
+        document.getElementById("password").type='password';
+}
+
+
+</script>   
+</script>
+</html>
